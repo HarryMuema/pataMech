@@ -1,21 +1,20 @@
 const db= require('../database/db')
 
-const createCenter=async(req,res)=>{
-    try {
-        const {firstName,lastName,email,password}=await req.body
-            const user=await db('users').insert({
-                first_name:firstName,
-                last_name:lastName,
-                email,
-                password,
-            });
-        res.send(user)
-    } catch (error) {
-        res.status(500).json({ errored:error,error:"internal server error" });
-        console.log(error)
-    }
-}
-
 module.exports={
-    createCenter
+    createUser:async(req,res)=>{
+        try {
+            const {firstName,lastName,email,password,id}=await req.body
+                const user=await db('users').insert({
+                    user_id:id,
+                    first_name:firstName,
+                    last_name:lastName,
+                    email,
+                    password,
+                });
+            const responce=firstName+" "+lastName+" "+"created successfully"    
+            res.status(200).json(responce)
+        } catch (error) {
+            res.status(500).json({ errored:error.detail ,error:"internal server error" });
+        }
+    },
 }

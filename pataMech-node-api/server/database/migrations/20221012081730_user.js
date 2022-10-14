@@ -4,19 +4,15 @@
  */
 exports.up = function(knex) {
     return knex.schema
-    .createTable('users', function (table) {
+    .createTable('user', function (table) {
         table.increments('user_id');
         table.string('first_name', 255).notNullable();
         table.string('last_name', 255).notNullable();
         table.string('email', 255).notNullable().unique();
         table.string('password', 255).notNullable();
+        table.integer('role_id',255).index().references('role_id').inTable('role');
         table.timestamps(true,true)
     })
-    .createTable('products', function (table) {
-        table.increments('id');
-        table.decimal('price').notNullable();
-        table.string('name', 1000).notNullable();
-    });
 };
 
 /**
@@ -24,5 +20,6 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  
+    return knex.schema
+    .dropTable("users");
 };

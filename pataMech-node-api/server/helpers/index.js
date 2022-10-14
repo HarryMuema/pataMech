@@ -1,4 +1,5 @@
-const tryCatch = (fn) => (req, res, next) =>
-    Promise.resolve(fn(req, res, next)).catch(next);
-
-module.exports=tryCatch
+module.exports={
+    tryCatch:(fn)=>(req,res,next)=>{
+        Promise.resolve(fn(req,res,next)).catch(next)
+    },
+}
