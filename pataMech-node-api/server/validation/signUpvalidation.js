@@ -1,10 +1,11 @@
 const joi=require('joi')
 
 module.exports={
-    signUpValidation:(user)=>{
+    signUpEmailValidation:(user)=>{
         const schema=joi.object({
             email:joi.string().email().required(),
-            password:joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+            password:joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+            role:joi.string().required()
         })
         return schema.validate(user)
     },
@@ -12,7 +13,7 @@ module.exports={
         const schema=joi.object({
             firstname:joi.string().alphanum().min(3).max(30).required(),
             lastname:joi.string().alphanum().min(3).max(30).required(),
-            phonenumber:joi.number().integer().min(9).max(9).required(),
+            phonenumber:joi.number().integer().required(),
         })
         return schema.validate(data)
     },
