@@ -4,5 +4,6 @@ const {signup,signupPage2}=require('./signUpHandler')
 module.exports={
     createCenter,
     signup,
-    signupPage2
+    signupPage2,
+    driverId
 }

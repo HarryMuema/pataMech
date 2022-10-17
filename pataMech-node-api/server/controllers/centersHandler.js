@@ -3,6 +3,7 @@ const db= require('../database/db')
 module.exports={
     createUser:async(req,res)=>{
         try {
+            res.send("userId")
             const {firstName,lastName,email,password,id}=await req.body
                 const user=await db('users').insert({
                     user_id:id,
