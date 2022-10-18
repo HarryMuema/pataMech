@@ -32,6 +32,12 @@ module.exports={
                     user_id:userId[0].user_id
                 })
 
+                 //add to other tables
+                 const centerId=await db('servicestation').returning('center_id')
+                 .insert({
+                     user_id:userId[0].user_id
+                 })
+
                 res.status(200).json({message:"Agent created"})
                 return agentId
 
@@ -53,6 +59,12 @@ module.exports={
                     user_id:userId[0].user_id
                 })
 
+                //add to other tables
+                const centerId=await db('servicestation').returning('center_id')
+                .insert({
+                    user_id:userId[0].user_id
+                })
+
                 res.status(200).json({message:"Tow service created"})
                 return towId
 
@@ -70,6 +82,12 @@ module.exports={
                 
                 //add to other tables
                 const mechanicId=await db('mechanic').returning('mechanic_id')
+                .insert({
+                    user_id:userId[0].user_id
+                })
+
+                //add to other tables
+                const centerId=await db('servicestation').returning('center_id')
                 .insert({
                     user_id:userId[0].user_id
                 })
@@ -209,6 +227,12 @@ module.exports={
 
             if(roleId[0].role_id==5){
                 //update database
+                await db('servicestation').where({'user_id':userid})
+                .update({
+                    phone_id:phoneId[0].phone_id,
+                },["phone_id"])
+
+                //update database
                 await db('mechanic').where({'user_id':userid})
                 .update({
                     phone_id:phoneId[0].phone_id,
@@ -216,6 +240,12 @@ module.exports={
             }
 
             if(roleId[0].role_id==6){
+                //update database
+                await db('servicestation').where({'user_id':userid})
+                .update({
+                    phone_id:phoneId[0].phone_id,
+                },["phone_id"])
+
                 //update database
                 await db('towservice').where({'user_id':userid})
                 .update({
@@ -284,7 +314,7 @@ module.exports={
              .insert({
                 town,
                 county,
-            }).onConflict('town').ignore()
+            })
 
             //add to database
             const addressId=await db('address').returning('address_id')
@@ -293,64 +323,62 @@ module.exports={
                 address_2:address2,
             })
 
-            const centerId=await db('servicestation').returning('center_id').where({'user_id':userid})
-            .update({
-               center_name:centername,
-            },["center_name"]).onConflict('center_name').ignore()
-
-             //add to database
+            //add to database
             const roleId=await db('users').where({'user_id':userid}).select('role_id') 
 
-            if(roleId[0].role_id==5){
-                //update database
-                const mechanicId=await db('mechanic').returning('mechanic_id').where({'user_id':userid})
+            if(roleId[0].role_id==2){
+                await db('partdealer').returning('dealer_id').where({'user_id':userid})
                 .update({
                     town_id:townId[0].town_id,
-                    center_id:centerId[0].center_id,
-                },["town_id","center_id","address_id"])
-            }
-
-            if(roleId[0].role_id==2){
-                const dealerId=await db('partdealer').returning('dealer_id').where({'user_id':userid})
-             .update({
-                town_id:townId[0].town_id,
-                dealer_name:centername,
-                address_id:addressId[0].address_id,
-             },["center_name"]).onConflict('center_name').ignore()
+                    dealer_name:centername,
+                    address_id:addressId[0].address_id,
+                },["dealer_name","town_id","address_id"])
             }
 
             if(roleId[0].role_id==3){
-                const centerId=await db('servicestation').returning('center_id').where({'user_id':userid})
-             .update({
-                town_id:townId[0].town_id,
-                center_id:centerId[0].center_id,
-                address_id:addressId[0].address_id,
-             },["center_name"]).onConflict('center_name').ignore()
+                await db('servicestation').returning('center_id').where({'user_id':userid})
+                .update({
+                    town_id:townId[0].town_id,
+                    center_name:centername,
+                    address_id:addressId[0].address_id,
+                },["center_name","address_id","town_id"])
+            }
+
+            if(roleId[0].role_id==5){
+                await db('servicestation').returning('center_id').where({'user_id':userid})
+                .update({
+                   center_name:centername,
+                },["center_name"])
+
+                const centerId=await db('servicestation').where({'user_id':userid}).select('center_id')
+
+                res.send(centerId)
+                //update database
+                const mechanicId=await db('mechanic').returning('mechanic_id').where({'user_id':userid})
+                .update({
+                    center_id:centerId[0].center_id,
+                },["center_id"])
             }
 
             if(roleId[0].role_id==6){
-                const centerId=await db('towservice').returning('center_id').where({'user_id':userid})
-             .update({
-                town_id:townId[0].town_id,
-                center_id:centerId[0].center_id,
-                address_id:addressId[0].address_id,
-             },["center_name"]).onConflict('center_name').ignore()
+                await db('servicestation').returning('center_id').where({'user_id':userid})
+                .update({
+                   center_name:centername,
+                },["center_name"])
+
+                const centerId=await db('servicestation').where({'user_id':userid}).select('center_id')
+
+                //update database
+                const towId=await db('towservice').returning('tow_id').where({'user_id':userid})
+                .update({
+                    center_id:centerId[0].center_id,
+                },["center_id"])
             }
-
-            if(roleId[0].role_id==7){
-                const centerId=await db('servicestation').returning('center_id').where({'user_id':userid})
-             .update({
-                town_id:townId[0].town_id,
-                center_id:centerId[0].center_id,
-                address_id:addressId[0].address_id,
-             },["center_name"]).onConflict('center_name').ignore()
-            }
-
-            const phoneId=await db('servicestation').where({'user_id':userid}).select('phone_id') 
-
+            
+            const phoneId=roleId[0].role_id==2?await db('partdealer').where({'user_id':userid}).select('phone_id'):await db('servicestation').where({'user_id':userid}).select('phone_id')
 
              //update database
-            await db('contacts').where({'phone_id':phoneId})
+            await db('contacts').where({'phone_id':phoneId[0].phone_id})
             .update({
                 postal_code:postalcode,
                 telephone,
