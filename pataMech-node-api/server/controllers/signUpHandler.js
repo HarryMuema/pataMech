@@ -2,9 +2,6 @@ const db= require('../database/db')
 const bcrypt=require('bcrypt')
 const passport=require('passport')
 
-const initializePassport=require('../helpers/passport-config')
-initializePassport(passport)
-
 const { signUpEmailValidation, signUpDetails1Validation, signUpDetails2Validation, signUpDetails2Validationcenters } = require('../validation/signUpvalidation')
 
 module.exports={
