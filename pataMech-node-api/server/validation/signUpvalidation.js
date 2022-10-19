@@ -1,10 +1,11 @@
 const joi=require('joi')
 
 module.exports={
-    signUpValidation:(user)=>{
+    signUpEmailValidation:(user)=>{
         const schema=joi.object({
             email:joi.string().email().required(),
-            password:joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')),
+            password:joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).required(),
+            role:joi.string().required()
         })
         return schema.validate(user)
     },
@@ -12,7 +13,9 @@ module.exports={
         const schema=joi.object({
             firstname:joi.string().alphanum().min(3).max(30).required(),
             lastname:joi.string().alphanum().min(3).max(30).required(),
-            phonenumber:joi.number().integer().min(9).max(9).required(),
+            phonenumber:joi.number().integer().required(),
+            altphonenumber:joi.number().integer(),
+            userid:joi.number().integer(),
         })
         return schema.validate(data)
     },
@@ -21,9 +24,10 @@ module.exports={
             address1:joi.string().min(3),
             address2:joi.string().min(3),
             carmodel:joi.string().min(4),
-            carmake:joi.string().min(3),
-            carplatenumber:joi.string().min(7).max(7),
-            carmodelyear:joi.number().integer().min(4).max(4),
+            carmake:joi.string().min(3).required(),
+            carplatenumber:joi.string().min(5),
+            carmodelyear:joi.number().integer().min(4),
+            userid:joi.number().integer(),
         })
         return schema.validate(data)
     },
@@ -36,6 +40,8 @@ module.exports={
             county:joi.string().required(),
             postalcode:joi.string().min(3),
             telephone:joi.number().integer(),
+            userid:joi.number().integer(),
         })
+        return schema.validate(data)
     }
 }
