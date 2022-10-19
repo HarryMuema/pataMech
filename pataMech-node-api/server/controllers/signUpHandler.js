@@ -1,4 +1,10 @@
 const db= require('../database/db')
+const bcrypt=require('bcrypt')
+const passport=require('passport')
+
+const initializePassport=require('../helpers/passport-config')
+initializePassport(passport)
+
 const { signUpEmailValidation, signUpDetails1Validation, signUpDetails2Validation, signUpDetails2Validationcenters } = require('../validation/signUpvalidation')
 
 module.exports={
@@ -13,6 +19,8 @@ module.exports={
                                     .from('users');
             if (result==email) return res.status(403).send({errored:true,error:"User already exists"})
 
+            const hashedpassword=await bcrypt.hash(password,10)
+
             // choosing the role
             let roleId
 
@@ -22,7 +30,7 @@ module.exports={
                 const userId=await db('users').returning('user_id')
                 .insert({
                     email,
-                    password,
+                    password:hashedpassword,
                     role_id:roleId
                 })
                 
@@ -49,7 +57,7 @@ module.exports={
                 const userId=await db('users').returning('user_id')
                 .insert({
                     email,
-                    password,
+                    password:hashedpassword,
                     role_id:roleId
                 })
                 
@@ -76,7 +84,7 @@ module.exports={
                 const userId=await db('users').returning('user_id')
                 .insert({
                     email,
-                    password,
+                    password:hashedpassword,
                     role_id:roleId
                 })
                 
@@ -102,7 +110,7 @@ module.exports={
 
                 await db('users').insert({
                     email,
-                    password,
+                    password:hashedpassword,
                     role_id:roleId
                 })
 
@@ -116,7 +124,7 @@ module.exports={
                 const userId=await db('users').returning('user_id')
                 .insert({
                     email,
-                    password,
+                    password:hashedpassword,
                     role_id:roleId
                 })
                 
@@ -137,7 +145,7 @@ module.exports={
                 const userId=await db('users').returning('user_id')
                 .insert({
                     email,
-                    password,
+                    password:hashedpassword,
                     role_id:roleId
                 })
 
@@ -158,7 +166,7 @@ module.exports={
                 const userId=await db('users').returning('user_id')
                 .insert({
                     email,
-                    password,
+                    password:hashedpassword,
                     role_id:roleId
                 })
 
