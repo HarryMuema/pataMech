@@ -4,6 +4,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import colors from './components/config/colors'
 import LoginPage from './components/pages/LoginPage';
 import OnBoardingPages from './components/pages/OnBoardingPages';
+import LoginWithEmail from './components/pages/LoginWithEmail';
+import EnableLocationPage from './components/pages/EnableLocationPage';
 
 const Loading=()=>{
   return(
@@ -37,7 +39,8 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={{flex:1,marginHorizontal:20}}>
-        {loading?<Loading/>:viewedOnboarding?<LoginPage/>:<OnBoardingPages/>}
+        {/* {loading?<Loading/>:viewedOnboarding?<LoginPage/>:<OnBoardingPages/>} */}
+        <EnableLocationPage/>
       </View>
     </SafeAreaView>
   );
