@@ -6,6 +6,7 @@ import LoginPage from './components/pages/LoginPage';
 import OnBoardingPages from './components/pages/OnBoardingPages';
 import LoginWithEmail from './components/pages/LoginWithEmail';
 import EnableLocationPage from './components/pages/EnableLocationPage';
+import SignUpPage from './components/pages/SignUpPage';
 
 const Loading=()=>{
   return(
@@ -40,7 +41,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <View style={{flex:1,marginHorizontal:20}}>
         {/* {loading?<Loading/>:viewedOnboarding?<LoginPage/>:<OnBoardingPages/>} */}
-        <EnableLocationPage/>
+        <SignUpPage/>
       </View>
     </SafeAreaView>
   );
