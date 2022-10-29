@@ -6,6 +6,11 @@ import LoginPage from './components/pages/LoginPage';
 import OnBoardingPages from './components/pages/OnBoardingPages';
 import LoginWithEmail from './components/pages/LoginWithEmail';
 import EnableLocationPage from './components/pages/EnableLocationPage';
+import SignUpPage from './components/pages/SignUpPage';
+import FillProfile1 from './components/pages/FillProfile1';
+import FillProfile2 from './components/pages/FillProfile2';
+import FillProfile2Centers from './components/pages/FillProfile2Centers';
+import CongratsPage from './components/pages/CongratsPage';
 
 const Loading=()=>{
   return(
@@ -40,7 +45,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <View style={{flex:1,marginHorizontal:20}}>
         {/* {loading?<Loading/>:viewedOnboarding?<LoginPage/>:<OnBoardingPages/>} */}
-        <EnableLocationPage/>
+        <CongratsPage/>
       </View>
     </SafeAreaView>
   );
