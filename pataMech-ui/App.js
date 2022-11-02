@@ -11,6 +11,9 @@ import FillProfile1 from './components/pages/FillProfile1';
 import FillProfile2 from './components/pages/FillProfile2';
 import FillProfile2Centers from './components/pages/FillProfile2Centers';
 import CongratsPage from './components/pages/CongratsPage';
+import ForgotPassword from './components/pages/ForgotPassword';
+import OtpPage from './components/pages/OtpPage';
+import CreateNewPassword from './components/pages/CreateNewPassword';
 
 const Loading=()=>{
   return(
@@ -45,7 +48,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <View style={{flex:1,marginHorizontal:20}}>
         {/* {loading?<Loading/>:viewedOnboarding?<LoginPage/>:<OnBoardingPages/>} */}
-        <CongratsPage/>
+        <CreateNewPassword/>
       </View>
     </SafeAreaView>
   );
