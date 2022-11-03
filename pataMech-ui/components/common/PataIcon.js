@@ -2,7 +2,7 @@ import React from 'react'
 import {TouchableOpacity} from 'react-native'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import colors from '../config/colors'
-const PataIcon = ({iconColor,iconName,iconSize,iconType}) => {
+const PataIcon = ({iconColor,iconName,iconSize,iconType,onPress}) => {
   return (
     <TouchableOpacity style={{width:iconType==="circle"?30:35,
                   height:iconType==="circle"?30:35,
@@ -15,7 +15,9 @@ const PataIcon = ({iconColor,iconName,iconSize,iconType}) => {
                   elevation:10,
                   alignItems:"center",
                   justifyContent:"center"
-                }}>
+                }}
+              onPress={onPress}
+    >
         <MaterialCommunityIcons name={iconName} size={iconSize?iconSize:25} color={iconColor}/>
       </TouchableOpacity>
   )

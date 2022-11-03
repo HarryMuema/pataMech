@@ -6,15 +6,18 @@ import colors from '../config/colors'
 import fonts from '../config/fonts'
 import {RadioButton} from 'react-native-paper'
 import PataButton from '../common/PataButton'
+import { useNavigate } from 'react-router-native'
 
 const SignUpPage = () => {
-    const [value,setValue]=useState('mechanic')
+    const [value,setValue]=useState('')
+    const navigate=useNavigate()
   return (
     <View style={{flex:1,marginTop:20}}>
         <View style={{flex:0.05}}>
             <PataIcon iconName={"chevron-left"}
                         iconColor={colors.yellow}
                         iconSize={30}
+                        onPress={()=>navigate(-1)}
             />
         </View>
         <View style={{flex:0.15,justifyContent:"center"}}>
@@ -81,10 +84,13 @@ const SignUpPage = () => {
             <PataButton height={60}
                     buttonText={"Sign up"}
                     withIcon={false}
+                    to={'/fillprofile'}
             />
             <Text style={{fontSize:10,fontWeight:fonts.regular,color:colors.black,}}>
                 Already have an account?
-            <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingHorizontal:10,}}>
+            <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingHorizontal:10,}}
+                                onPress={()=>navigate('/login')}
+            >
                 <Text style={{fontSize:12,fontWeight:fonts.bold,color:colors.yellow,textAlign:'center',}}>Sign in</Text>
             </TouchableOpacity>
             </Text>

@@ -3,15 +3,18 @@ import { Text, TouchableOpacity, View } from 'react-native'
 import colors from '../config/colors'
 import fonts from '../config/fonts'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
+import { Link } from 'react-router-native'
 
-const PataButton = ({width,paddingHorizontal,iconName,iconColor,paddingVertical,fontSize,fontWeight,onPress,withIcon,buttonText,backgroundColor,elevation,height}) => {
+const PataButton = ({to,width,paddingHorizontal,iconName,iconColor,paddingVertical,fontSize,fontWeight,onPress,withIcon,buttonText,backgroundColor,elevation,height}) => {
   return (
     withIcon==false?
-    <TouchableOpacity style={{
+    <Link to={to} style={{
               paddingHorizontal:paddingHorizontal?paddingHorizontal:15,
               paddingVertical:paddingVertical?paddingVertical:15,
               justifyContent:'center',
               alignItems:"center",
+              underlayColor:colors.black,
+              activeOpacity:1,
               backgroundColor:backgroundColor?backgroundColor:colors.orange,
               borderRadius:20,
               width:width?width:"80%",
@@ -31,12 +34,14 @@ const PataButton = ({width,paddingHorizontal,iconName,iconColor,paddingVertical,
         >
           {buttonText}
         </Text>
-    </TouchableOpacity>:
-    <TouchableOpacity style={{
+    </Link>:
+    <Link to={to} style={{
               paddingHorizontal:paddingHorizontal?paddingHorizontal:15,
               paddingVertical:paddingVertical?paddingVertical:15,
               justifyContent:'center',
               alignItems:"center",
+              underlayColor:colors.black,
+              activeOpacity:1,
               backgroundColor:backgroundColor?backgroundColor:colors.orange,
               borderRadius:20,
               width:width?width:"80%",
@@ -55,7 +60,7 @@ const PataButton = ({width,paddingHorizontal,iconName,iconColor,paddingVertical,
             {buttonText}
           </Text>
         </View>
-    </TouchableOpacity>
+    </Link>
   )
 }
 

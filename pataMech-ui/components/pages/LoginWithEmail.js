@@ -1,5 +1,5 @@
-import React from 'react'
-import { Text, View,TouchableOpacity, Image } from 'react-native'
+import React, { useEffect } from 'react'
+import { Text, View,TouchableOpacity } from 'react-native'
 import PataButton from '../common/PataButton'
 import PataIcon from '../common/PataIcon'
 import PataInput from '../common/PataInput'
@@ -8,14 +8,17 @@ import fonts from '../config/fonts'
 import facebook from '../../assets/Images/facebook.png'
 import google from '../../assets/Images/google.png'
 import PataTile from '../common/PataTile'
+import { useNavigate } from 'react-router-native'
 
 const LoginWithEmail = () => {
+    const navigate=useNavigate()
   return (
     <View style={{marginTop:20,flex:1}}>
         <View style={{flex:0.05}}>
             <PataIcon iconName={"chevron-left"}
                         iconColor={colors.yellow}
                         iconSize={30}
+                        onPress={()=>navigate(-1)}
             />
         </View>
         <View style={{flex:0.15,justifyContent:"center"}}>
@@ -35,8 +38,11 @@ const LoginWithEmail = () => {
             <PataButton height={50}
                         buttonText={"Sign in"}
                         withIcon={false}
+                        to={'/enablelocation'}
             />
-            <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingHorizontal:10,}}>
+            <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingHorizontal:10,}}
+                                onPress={()=>navigate('/forgotpassword')}
+            >
                 <Text style={{fontSize:12,fontWeight:fonts.bold,color:colors.yellow,textAlign:'center',}}>Forgot password ?</Text>
             </TouchableOpacity>
         </View>
@@ -52,7 +58,9 @@ const LoginWithEmail = () => {
         <View style={{flex:0.05,justifyContent:'center',alignItems:"center"}}>
             <Text style={{fontSize:10,fontWeight:fonts.regular,color:colors.black,}}>
                 Don't have an account?
-                <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingHorizontal:10,}}>
+                <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingHorizontal:10,}}
+                                onPress={()=>navigate('/signup')}
+                >
                     <Text style={{fontSize:10,fontWeight:fonts.bold,color:colors.yellow,textAlign:'center',}}>Sign up</Text>
                 </TouchableOpacity>
             </Text>

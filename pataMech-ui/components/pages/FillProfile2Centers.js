@@ -1,5 +1,6 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import { useNavigate } from 'react-router-native'
 import PataButton from '../common/PataButton'
 import PataIcon from '../common/PataIcon'
 import PataInput from '../common/PataInput'
@@ -7,12 +8,14 @@ import colors from '../config/colors'
 import fonts from '../config/fonts'
 
 const FillProfile2Centers = () => {
+        const navigate=useNavigate()
   return (
     <View style={{flex:1,marginTop:20}}>
         <View style={{flex:0.05}}>
             <PataIcon iconName={"chevron-left"}
                         iconColor={colors.yellow}
                         iconSize={30}
+                        onPress={()=>navigate(-1)}
             />
         </View>
         <View style={{flex:0.15,justifyContent:"center"}}>
@@ -45,6 +48,7 @@ const FillProfile2Centers = () => {
         </View>
         <View style={{flex:0.2,justifyContent:'space-evenly',alignItems:'center'}}>
             <PataButton buttonText={'Continue'}
+                        to={'/congrats/newuser'}
             />
         </View>
     </View>

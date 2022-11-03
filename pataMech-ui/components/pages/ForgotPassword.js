@@ -6,14 +6,17 @@ import fonts from '../config/fonts'
 import forgotPassword from '../../assets/Images/forgotPassword.png'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import PataButton from '../common/PataButton'
+import { useNavigate } from 'react-router-native'
 
 const ForgotPassword = () => {
+    const navigate=useNavigate()
   return (
     <View style={{flex:1,marginTop:20}}>
         <View style={{flex:0.05,flexDirection:'row',alignItems:'center'}}>
             <PataIcon iconName={"chevron-left"}
                         iconColor={colors.yellow}
                         iconSize={30}
+                        onPress={()=>navigate(-1)}
             />
             <Text style={{fontSize:24,fontWeight:fonts.bold,color:colors.black,marginLeft:20}}>
                 Forgot Password.
@@ -57,6 +60,7 @@ const ForgotPassword = () => {
         </View>
         <View style={{flex:0.2,alignItems:'center',justifyContent:'space-evenly'}}>
             <PataButton buttonText={"Continue"}
+                        to={'/otp'}
             />
         </View>
     </View>

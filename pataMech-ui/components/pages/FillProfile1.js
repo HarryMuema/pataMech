@@ -6,14 +6,17 @@ import colors from '../config/colors'
 import fonts from '../config/fonts'
 import profile from '../../assets/Images/profile.png'
 import PataButton from '../common/PataButton'
+import { useNavigate } from 'react-router-native'
 
-const FillProfile1 = () => {
+const FillProfile1 = ({driver}) => {
+    const navigate=useNavigate()
   return (
     <View style={{flex:1,marginTop:20}}>
         <View style={{flex:0.05}}>
             <PataIcon iconName={"chevron-left"}
                         iconColor={colors.yellow}
                         iconSize={30}
+                        onPress={()=>navigate(-1)}
             />
         </View>
         <View style={{flex:0.15,justifyContent:"center"}}>
@@ -51,6 +54,7 @@ const FillProfile1 = () => {
         </View>
         <View style={{flex:0.2,alignItems:'center',justifyContent:'space-evenly'}}>
             <PataButton buttonText={"Continue"}
+                        to={driver?'/fillprofile2':'/fillprofile/centers'}
             />
         </View>
     </View>
