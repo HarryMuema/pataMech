@@ -34,7 +34,7 @@ const slides=[
   }
 ]
 
-const OnBoardingPages = () => {
+const OnBoardingPages = ({history}) => {
     const [currentIndex,setCurrentIndex]=useState(0)
     const scrollX=useRef(new Animated.Value(0)).current
     const slidesRef=useRef(null)
@@ -73,7 +73,7 @@ const OnBoardingPages = () => {
             <View style={{width:"100%",alignItems:'center'}}>
                 <Paginator data={slides} scrollX={scrollX}/>
               <View style={{width:"100%",marginTop:20,justifyContent:"center",alignItems:"center"}}>
-                <PataButton onPress={scrollTo} buttonText={currentIndex==slides.length-1?"Get started":"Next"}/>  
+                <PataButton onPress={scrollTo} to={currentIndex==slides.length-1?"/login":''} buttonText={currentIndex==slides.length-1?"Get started":"Next"}/>  
               </View>
             </View>
         </View>

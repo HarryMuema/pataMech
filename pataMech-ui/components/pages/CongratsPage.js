@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Image, Text, View } from 'react-native'
 import colors from '../config/colors'
 import congrats from '../../assets/Images/congrats.png'
 import fonts from '../config/fonts'
 import PataButton from '../common/PataButton'
 import { ActivityIndicator } from 'react-native-paper'
+import { useNavigate } from 'react-router-native'
 
 const CongratsPage = ({forgotPassword}) => {
+    const navigate=useNavigate()
+    useEffect(()=>{
+        setTimeout(() => {
+            navigate(forgotPassword==true?'/loginwithemail':'/home',{replace:true})
+        }, 3000);
+    },[])
   return (
     <View style={{flex:1,marginHorizontal:-20,justifyContent: 'center',alignItems:'center',backgroundColor:"rgba(25, 26, 31, 0.3)",}}>
         <View style={{backgroundColor:colors.white,height:"65%",padding:20,width:"90%",borderRadius:20,alignItems:'center',justifyContent:'space-evenly'}}>

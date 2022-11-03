@@ -5,8 +5,10 @@ import login1 from "../../assets/Images/login1.png";
 import fonts from '../config/fonts'
 import colors from '../config/colors'
 import PataButton from "../common/PataButton";
+import { useNavigate } from "react-router-native";
 
 const LoginPage = () => {
+  const navigate=useNavigate()
   const clearOnboarding = async () => {
     try {
       await AsyncStorage.removeItem("@viewedOnboarding");
@@ -53,12 +55,15 @@ const LoginPage = () => {
       </View>
       <View style={{flex:0.3,width:"100%",justifyContent:'space-evenly',alignItems:'center'}}>
         <PataButton height={60}
-                    buttonText={"Sign in with password "}
+                    buttonText={"Sign in with email "}
                     withIcon={false}
+                    to={"/loginwithemail"}
         />
         <Text style={{fontSize:10,fontWeight:fonts.regular,color:colors.black,}}>
           Don't have an account?
-          <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingHorizontal:10,}}>
+          <TouchableOpacity style={{justifyContent:'center',alignItems:'center',paddingHorizontal:10,}}
+                            onPress={()=>navigate('/signup')}
+          >
             <Text style={{fontSize:12,fontWeight:fonts.bold,color:colors.yellow,textAlign:'center',}}>Sign up</Text>
           </TouchableOpacity>
         </Text>

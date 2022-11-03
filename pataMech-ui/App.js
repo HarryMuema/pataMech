@@ -1,9 +1,8 @@
-import React, {useState,useEffect} from 'react';
-import { Platform, SafeAreaView, StyleSheet, Text, View,StatusBar, ActivityIndicator } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import React from 'react';
+import { Platform, SafeAreaView, StyleSheet, View,StatusBar } from 'react-native';
+import { NativeRouter, Routes, Route } from 'react-router-native'
 import colors from './components/config/colors'
 import LoginPage from './components/pages/LoginPage';
-import OnBoardingPages from './components/pages/OnBoardingPages';
 import LoginWithEmail from './components/pages/LoginWithEmail';
 import EnableLocationPage from './components/pages/EnableLocationPage';
 import SignUpPage from './components/pages/SignUpPage';
@@ -14,43 +13,37 @@ import CongratsPage from './components/pages/CongratsPage';
 import ForgotPassword from './components/pages/ForgotPassword';
 import OtpPage from './components/pages/OtpPage';
 import CreateNewPassword from './components/pages/CreateNewPassword';
+import OneTimeOnboarding from './components/OneTimeOnboarding';
+import Home from './components/pages/Home';
 
-const Loading=()=>{
-  return(
-      <View>
-        <ActivityIndicator size="large"/>
-      </View>
-  )
-}
+
 
 export default function App() {
-  const [loading,setLoading]=useState(true)
-  const [viewedOnboarding,setViewedOnboarding]=useState(false)
-
-  const checkOnboarding=async()=>{
-      try {
-          const value=await AsyncStorage.getItem('@viewedOnboarding')
-          if(value!==null){
-            setViewedOnboarding(true)
-          }
-      } catch (error) {
-          console.log('Error @checkOnboarding: ',error)
-      }finally{
-          setLoading(false)
-      } 
-  }
-
-  useEffect(()=>{
-    checkOnboarding()
-  },[])
+  
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={{flex:1,marginHorizontal:20}}>
-        {/* {loading?<Loading/>:viewedOnboarding?<LoginPage/>:<OnBoardingPages/>} */}
-        <CreateNewPassword/>
-      </View>
-    </SafeAreaView>
+    <NativeRouter>
+      <SafeAreaView style={styles.container}>
+        <View style={{flex:1,marginHorizontal:20}}>
+          <Routes>
+              <Route path="/" element={<OneTimeOnboarding/>}/>
+              <Route path="/login" element={<LoginPage/>}/>
+              <Route path="/loginwithemail" element={<LoginWithEmail/>}/>
+              <Route path="/enablelocation" element={<EnableLocationPage/>}/>
+              <Route path="/forgotpassword" element={<ForgotPassword/>}/>
+              <Route path="/otp" element={<OtpPage/>}/>
+              <Route path="/newpassword" element={<CreateNewPassword/>}/>
+              <Route path="/congrats/password" element={<CongratsPage forgotPassword={true}/>}/>
+              <Route path="/signup" element={<SignUpPage/>}/>
+              <Route path="/fillprofile" element={<FillProfile1/>}/>
+              <Route path="/fillprofile2" element={<FillProfile2/>}/>
+              <Route path="/fillprofile/centers" element={<FillProfile2Centers/>}/>
+              <Route path="/congrats/newuser" element={<CongratsPage forgotPassword={false}/>}/>
+              <Route path="/home" element={<Home/>}/>
+          </Routes>
+        </View>
+      </SafeAreaView>
+    </NativeRouter>
   );
 }
 

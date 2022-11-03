@@ -16,10 +16,12 @@ const EnableLocationPage = () => {
             </View>
             <PataButton buttonText={"Enable Location"}
                         backgroundColor={colors.yellow}
-
+                        to={'/home'}
+                        
             />
             <PataButton buttonText={"Not now"}
                         backgroundColor={colors.lightyellow}
+                        to={'/home'}
             />
         </View>
 
