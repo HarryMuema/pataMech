@@ -5,12 +5,12 @@
 exports.up = function(knex) {
     return knex.schema
     .createTable('request', function (table){
-        table.increments('request_id').notNullable();
-        table.integer('driver_id',255).index().references('driver_id').inTable('driver');
-        table.integer('mechanic_id',255).index().references('mechanic_id').inTable('mechanic');
-        table.integer('tow_id',255).index().references('tow_id').inTable('towservice');
-        table.integer('agent_id',255).index().references('agent_id').inTable('insuranceagent');
-        table.integer('center_id',255).index().references('center_id').inTable('servicestation');
+        table.increments('request_Id').notNullable();
+        table.integer('driver_Id',255).index().references('user_Id').inTable('users');
+        table.integer('mechanic_Id',255).index().references('user_Id').inTable('users');
+        table.integer('tow_Id',255).index().references('user_Id').inTable('users');
+        table.integer('agent_Id',255).index().references('user_Id').inTable('users');
+        table.integer('center_Id',255).index().references('user_Id').inTable('users');
         table.timestamps(true,true)
     })
 };

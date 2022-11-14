@@ -2,11 +2,13 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = function(knex) {
+ exports.up = function(knex) {
     return knex.schema
-    .alterTable('partdealer', function (table) {
-        table.setNullable('dealer_name');
+    .alterTable('drivercar', function (table){
+        table.dropColumn('reg_Number');
+        table.string('plate_Number',7).notNullable().unique();
     })
+  
 };
 
 /**

@@ -4,10 +4,11 @@
  */
 exports.up = function(knex) {
     return knex.schema
-    .alterTable('contacts', function (table){
-        table.dropColumn('phone_number')
-        // table.integer('phone_number',20).notNullable().unique();
+    .alterTable('drivercar', function (table){
+        table.dropColumn('plate_Number');
+        table.string('reg_Number',10).notNullable().unique();
     })
+  
 };
 
 /**

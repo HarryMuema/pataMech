@@ -5,8 +5,8 @@
 exports.up = function(knex) {
     return knex.schema
     .createTable('role',function (table){
-        table.increments('role_id').notNullable();
-        table.string('role_name',20).notNullable();
+        table.increments('role_Id').notNullable();
+        table.string('role_Name',20).notNullable();
         table.timestamps(true,true)
     })
 };

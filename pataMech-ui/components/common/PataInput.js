@@ -4,8 +4,7 @@ import colors from '../config/colors'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import fonts from '../config/fonts'
 
-const PataInput = ({placeholder,iconName,height,withIcon}) => {
-  const [text,onChangeText] = useState("");
+const PataInput = ({placeholder,iconName,height,withIcon,value,onChangeText,ref,onBlur}) => {
   return (
     withIcon==true?
     <View style={{flexDirection:'row',
@@ -27,7 +26,9 @@ const PataInput = ({placeholder,iconName,height,withIcon}) => {
         <TextInput style={{fontSize:14,fontWeight:fonts.medium,height:40,width:"100%"}}
                     placeholder={placeholder?placeholder:"enter a placeholder"}
                     onChangeText={onChangeText}
-                    value={text}
+                    value={value}
+                    ref={ref}
+                    onBlur={onBlur}
         />
     </View>:
     <View style={{flexDirection:'row',
@@ -48,7 +49,9 @@ const PataInput = ({placeholder,iconName,height,withIcon}) => {
         <TextInput style={{fontSize:14,fontWeight:fonts.medium,height:40,width:"100%"}}
                     placeholder={placeholder?placeholder:"enter a placeholder"}
                     onChangeText={onChangeText}
-                    value={text}
+                    value={value}
+                    ref={ref}
+                    onBlur={onBlur}
         />
     </View>
   )

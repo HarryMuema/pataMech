@@ -4,11 +4,10 @@
  */
 exports.up = function(knex) {
     return knex.schema
-    .createTable('town', function (table){
-        table.increments('town_id').notNullable();
-        table.string('town_name',50).notNullable();
-        table.string('county',50).notNullable();
-        table.timestamps(true,true)
+    .alterTable('contacts', function (table) {
+        table.setNullable('alt_phone_number');
+        table.setNullable('telephone');
+        table.setNullable('postal_code');
     })
 };
 

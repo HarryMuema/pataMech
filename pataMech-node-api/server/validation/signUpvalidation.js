@@ -13,9 +13,10 @@ module.exports={
         const schema=joi.object({
             firstname:joi.string().alphanum().min(3).max(30).required(),
             lastname:joi.string().alphanum().min(3).max(30).required(),
+            username:joi.string().alphanum().min(3).max(30).required(),
             phonenumber:joi.number().integer().required(),
             altphonenumber:joi.number().integer(),
-            userid:joi.number().integer(),
+            userId:joi.number().integer(),
         })
         return schema.validate(data)
     },
@@ -27,7 +28,7 @@ module.exports={
             carmake:joi.string().min(3).required(),
             carplatenumber:joi.string().min(5),
             carmodelyear:joi.number().integer().min(4),
-            userid:joi.number().integer(),
+            userId:joi.number().integer(),
         })
         return schema.validate(data)
     },
@@ -35,12 +36,11 @@ module.exports={
         const schema=joi.object({
             address1:joi.string().min(3),
             address2:joi.string().min(3),
-            centername:joi.string().required(),
             town:joi.string().required(),
             county:joi.string().required(),
             postalcode:joi.string().min(3),
             telephone:joi.number().integer(),
-            userid:joi.number().integer(),
+            userId:joi.number().integer(),
         })
         return schema.validate(data)
     }
