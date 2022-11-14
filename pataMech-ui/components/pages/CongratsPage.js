@@ -5,13 +5,16 @@ import congrats from '../../assets/Images/congrats.png'
 import fonts from '../config/fonts'
 import PataButton from '../common/PataButton'
 import { ActivityIndicator } from 'react-native-paper'
-import { useNavigate } from 'react-router-native'
+import { useLocation, useNavigate } from 'react-router-native'
 
 const CongratsPage = ({forgotPassword}) => {
     const navigate=useNavigate()
+    const location=useLocation()
+    const state=location.state
+    const payload=state.data
     useEffect(()=>{
         setTimeout(() => {
-            navigate(forgotPassword==true?'/loginwithemail':'/home',{replace:true})
+            navigate(forgotPassword==true?'/loginwithemail':'/home',{replace:true,state:{...payload}})
         }, 3000);
     },[])
   return (

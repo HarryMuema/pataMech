@@ -5,7 +5,7 @@ import fonts from '../config/fonts'
 import {MaterialCommunityIcons} from '@expo/vector-icons'
 import { Link } from 'react-router-native'
 
-const PataButton = ({to,width,paddingHorizontal,iconName,iconColor,paddingVertical,fontSize,fontWeight,onPress,withIcon,buttonText,backgroundColor,elevation,height}) => {
+const PataButton = ({to,disabled,width,paddingHorizontal,iconName,iconColor,paddingVertical,fontSize,fontWeight,onPress,withIcon,buttonText,backgroundColor,elevation,height}) => {
   return (
     withIcon==false?
     <Link to={to} style={{
@@ -26,6 +26,7 @@ const PataButton = ({to,width,paddingHorizontal,iconName,iconColor,paddingVertic
               elevation:elevation?elevation:0,
               }}
               onPress={onPress}
+              disabled={disabled}
     >
         <Text style={{
               fontWeight:fontWeight?fontWeight:fonts.bold,
@@ -53,6 +54,7 @@ const PataButton = ({to,width,paddingHorizontal,iconName,iconColor,paddingVertic
               elevation:elevation?elevation:0,
               }}
               onPress={onPress}
+              disabled={disabled}
     >
         <View style={{flexDirection:"row",justifyContent:"space-between",alignItems:'center'}}>
           <MaterialCommunityIcons name={iconName} size={30} color={iconColor} style={{height:40,marginTop:8,justifyContent:"center",alignItems:'center'}}/>

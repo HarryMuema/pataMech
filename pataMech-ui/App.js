@@ -1,6 +1,6 @@
 import React from 'react';
 import { Platform, SafeAreaView, StyleSheet, View,StatusBar } from 'react-native';
-import { NativeRouter, Routes, Route } from 'react-router-native'
+import { NativeRouter, Routes, Route, useLocation } from 'react-router-native'
 import colors from './components/config/colors'
 import LoginPage from './components/pages/LoginPage';
 import LoginWithEmail from './components/pages/LoginWithEmail';
@@ -15,17 +15,16 @@ import OtpPage from './components/pages/OtpPage';
 import CreateNewPassword from './components/pages/CreateNewPassword';
 import OneTimeOnboarding from './components/OneTimeOnboarding';
 import Home from './components/pages/Home';
+import MapsView from './components/common/MapsView';
 
 
 
 export default function App() {
-  
-
   return (
     <NativeRouter>
       <SafeAreaView style={styles.container}>
         <View style={{flex:1,marginHorizontal:20}}>
-          <Routes>
+          {/* <Routes>
               <Route path="/" element={<OneTimeOnboarding/>}/>
               <Route path="/login" element={<LoginPage/>}/>
               <Route path="/loginwithemail" element={<LoginWithEmail/>}/>
@@ -36,11 +35,12 @@ export default function App() {
               <Route path="/congrats/password" element={<CongratsPage forgotPassword={true}/>}/>
               <Route path="/signup" element={<SignUpPage/>}/>
               <Route path="/fillprofile" element={<FillProfile1/>}/>
-              <Route path="/fillprofile2" element={<FillProfile2/>}/>
+              <Route path='/fillprofile/driver' element={<FillProfile2/>}/>
               <Route path="/fillprofile/centers" element={<FillProfile2Centers/>}/>
               <Route path="/congrats/newuser" element={<CongratsPage forgotPassword={false}/>}/>
               <Route path="/home" element={<Home/>}/>
-          </Routes>
+          </Routes> */}
+          <MapsView/>
         </View>
       </SafeAreaView>
     </NativeRouter>

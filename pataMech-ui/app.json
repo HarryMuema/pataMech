@@ -1,7 +1,9 @@
 {
   "expo": {
-    "name": "pataMech-ui",
+    "name": "pataMech",
     "slug": "pataMech-ui",
+    "privacy":"public",
+    "description":"An application to link motorists to mechanics and service centers near them",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
