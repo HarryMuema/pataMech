@@ -16,6 +16,7 @@ import CreateNewPassword from './components/pages/CreateNewPassword';
 import OneTimeOnboarding from './components/OneTimeOnboarding';
 import Home from './components/pages/Home';
 import MapsView from './components/common/MapsView';
+import SearchMech from './components/pages/SearchMech';
 
 
 
@@ -40,7 +41,7 @@ export default function App() {
               <Route path="/congrats/newuser" element={<CongratsPage forgotPassword={false}/>}/>
               <Route path="/home" element={<Home/>}/>
           </Routes> */}
-          <MapsView/>
+          <SearchMech/>
         </View>
       </SafeAreaView>
     </NativeRouter>
